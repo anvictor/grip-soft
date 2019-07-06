@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import Customers from './customers/customers.component';
+import Navbar from 'react-bootstrap/Navbar'
+function App(props) {
+  console.log('App props', props.localState);
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar expand="lg" variant="light" bg="light">
+        <h5>Invoice App</h5>
+        <Navbar.Brand href="/invoices">Invoices</Navbar.Brand>
+        <Navbar.Brand href="/products">Products</Navbar.Brand>
+        <Navbar.Brand href="/customers">Customers</Navbar.Brand>
+      </Navbar>
+      <Customers customers = {props.localState} />
     </div>
   );
 }
 
-export default App;
+export default connect(
+  state => ({
+    localState: state
+  }),
+  dispatch =>({})
+)(App);
