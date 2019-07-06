@@ -1,68 +1,97 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Общие требования
+Задание заключается в реализации SPA-приложение на React. Должны быть выполнены следующие условия:
 
-## Available Scripts
+* Приложение должно иметь навигацию c использованием History API
+* В зависимости от выбранного интерфейса должен быть установлен соответствующий document title
+* Интерфейсы должны быть свёрстаны с применением react-bootstrap
+* Выбор реализации data flow на ваше усмотрение (redux)
 
-In the project directory, you can run:
+# Основное задание. Интерфейсы покупателей и товаров.
 
-### `npm start`
+Требуется реализовать следующие интерфейсы:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Интерфейс покупателей (mockups/customers.png)
+* Интерфейс товаров (mockups/products.png)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Каждый интерфейс должен быть реализован на отдельном маршруте роутера.
 
-### `npm test`
+### Интерфейс покупателей
+Реализовать список покупателей с добавлением/редактированием/удалением элементов (см. раздел Схема REST API -> Customers).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Создание покупателя должно быть реализовано в модальном окне.
+Редактирование покупателя должно быть реализовано в модальном окне.
+Подтверждение удаления покупателя должно быть реализовано в модальном окне.
+Интерфейс товаров
+Реализовать список товаров с добавлением/редактированием/удалением элементов (см. раздел Схема REST API -> Products).
+Создание товара должно быть реализовано в модальном окне.
+Редактирование товара должно быть реализовано в модальном окне.
+Подтверждение удаления товара должно быть реализовано в модальном окне.
 
-### `npm run build`
+## Дополнительное задание. Интерфейсы списка счетов и создания/редактирования счёта
+Требуется дополнительно реализовать следующие интерфейсы:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Интерфейс счетов (mockups/invoice-list.png)
+Интерфейс создания/редактирования счёта (mockups/invoice-edit.png)
+Каждый интерфейс должен быть реализован на отдельном маршруте роутера.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Интерфейс счетов
+Реализовать список счетов с добавлением/редактированием/удалением элементов (см. раздел Схема REST API -> Invoices).
+Подтверждение удаления счёта должно быть реализовано в модальном окне.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Интерфейс создания нового/редактирования существующего счёта
+Реализовать интерфейс создания/редактирования счета со следующим функционалом:
 
-### `npm run eject`
+установление размера скидки
+выбор покупателя
+добавление/редактирование количества/удаление товара
+подсчёт и сохранение суммы ИТОГО (total)
+Структуры данных перечислены в разделах:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Схема REST API -> Invoices
+Схема REST API -> InvoiceItems Схема REST API
+Схема REST API
+После запуска проекта (npm start) будет автоматически поднят-бекенд сервер реализующий следующие эндпоинты:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Customers
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Структура
+* id (integer)
+* name (string)
+* address (string)
+* phone (string)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Эндпоинты
+* GET | POST /api/customers
+* GET | PUT|DELETE /api/customers/{id}
 
-## Learn More
+### Products
+Структура
+* id (integer)
+* name (string)
+* price (decimal)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Эндпоинты
+* GET | POST /api/products
+* GET | PUT | DELETE /api/products/{id}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Invoices
+Структура
+* id (integer)
+* customer_id (integer)
+* discount (decimal)
+* total (decimal)
 
-### Code Splitting
+Эндпоинты
+* GET | POST /api/invoices
+* GET | PUT | DELETE /api/invoices/{id}
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### InvoiceItems
+Структура
+* id (integer)
+* invoice_id (integer)
+* product_id (integer)
+* quantity (decimal)
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Эндпоинты
+* GET | POST /api/invoices/{id}/items
+* GET | PUT | DELETE /api/invoices/{invoice_id}/items/{id}
