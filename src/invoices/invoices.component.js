@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Table from 'react-bootstrap/Table';
 
-function Customers(props) {
+function Invoices(props) {
   return (
     <div className='table_component'>
       <ButtonToolbar>
-        <h1>Customer list</h1>
+        <h1>Invoice list</h1>
         <Button variant="outline-secondary">Create</Button>
       </ButtonToolbar>
 
@@ -15,19 +15,20 @@ function Customers(props) {
         <thead>
         <tr>
           <th>#</th>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Phone</th>
+          <th>Customer</th>
+          <th>Discount</th>
+          <th>Total</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
           {
-            props.customers.map(function (customer, index) {
+            props.invoices.map(function (invoice, index) {
               return <tr key={index}>
                 <td>{index}</td>
-                <td>{customer.name}</td>
-                <td>{customer.address}</td>
-                <td>{customer.phone}</td>
+                <td>{invoice.customer_id}</td>
+                <td>{invoice.discount}</td>
+                <td>{invoice.total}</td>
               </tr>
             })
           }
@@ -38,4 +39,4 @@ function Customers(props) {
   );
 }
 
-export default Customers;
+export default Invoices;

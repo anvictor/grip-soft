@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Customers from './customers/customers.component';
 import Navbar from 'react-bootstrap/Navbar'
+import Products from "./products/products.component";
+import Invoices from "./invoices/invoices.component";
+import "./App.css";
 function App(props) {
-  console.log('App props', props.localState);
 
   return (
     <div>
@@ -13,7 +15,9 @@ function App(props) {
         <Navbar.Brand href="/products">Products</Navbar.Brand>
         <Navbar.Brand href="/customers">Customers</Navbar.Brand>
       </Navbar>
-      <Customers customers = {props.localState} />
+      <Customers customers = {props.localState.customers} />
+      <Products products = {props.localState.products} />
+      <Invoices invoices = {props.localState.invoices} />
     </div>
   );
 }
