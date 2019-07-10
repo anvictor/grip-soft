@@ -4,11 +4,23 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Table from 'react-bootstrap/Table';
 
 function Customers(props) {
+  console.log('Customers', props);
+  function addCustomer(){
+    console.log('click');
+    props.onAddCustomer({
+      id: 513,
+      name: "New Name",
+      address: "new address",
+      phone: "new phone",
+      createdAt: "new createdAt",
+      updatedAt: "new apdatedAt"
+    })
+  }
   return (
     <div className='table_component'>
       <ButtonToolbar>
         <h1>Customer list</h1>
-        <Button variant="outline-secondary">Create</Button>
+        <Button onClick={addCustomer} variant="outline-secondary">Create</Button>
       </ButtonToolbar>
 
       <Table responsive>
@@ -31,7 +43,6 @@ function Customers(props) {
               </tr>
             })
           }
-
         </tbody>
       </Table>
     </div>

@@ -1,13 +1,10 @@
-export function gripSoft(state=  {
-  customers: [],
-} , action) {// reducer
+
+export default function customers(state = [], action) {// reducer
+  if (action.type === 'ADD_CUSTOMERS'){
+    return action.payload} else
   if (action.type === 'ADD_CUSTOMER'){
-    return {
-      ...state,
-      customers: [...state.customers, action.payload]
-    }
-  } else
-  if (action.type === 'EDIT_CUSTOMER'){return state} else
-  if (action.type === 'DEL_CUSTOMER'){return state} else
-    return state;
+    return [...state, action.payload]} else
+  if (action.type === 'DEL_CUSTOMER'){
+    return state}
+  return state;
 }

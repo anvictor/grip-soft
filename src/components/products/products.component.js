@@ -20,16 +20,15 @@ function Products(props) {
         </tr>
         </thead>
         <tbody>
-          {
-            props.products.map(function (product, index) {
-              return <tr key={index}>
-                <td>{index}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-              </tr>
-            })
-          }
-
+          {/*{*/}
+            {/*props.products.map(function (product, index) {*/}
+              {/*return <tr key={index}>*/}
+                {/*<td>{index}</td>*/}
+                {/*<td>{product.name}</td>*/}
+                {/*<td>{product.price}</td>*/}
+              {/*</tr>*/}
+            {/*})*/}
+          {/*}*/}
         </tbody>
       </Table>
     </div>
