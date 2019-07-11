@@ -28,16 +28,16 @@ function Invoices(props) {
         </tr>
         </thead>
         <tbody>
-          {/*{*/}
-            {/*props.invoices.map(function (invoice, index) {*/}
-              {/*return <tr key={index}>*/}
-                {/*<td>{index}</td>*/}
-                {/*<td>{invoice.customer_id}</td>*/}
-                {/*<td>{invoice.discount}</td>*/}
-                {/*<td>{invoice.total}</td>*/}
-              {/*</tr>*/}
-            {/*})*/}
-          {/*}*/}
+          {
+            props.invoices.map(function (invoice, index) {
+              return <tr key={index}>
+                <td>{index}</td>
+                <td>{invoice.customer_id}</td>
+                <td>{invoice.discount}</td>
+                <td>{invoice.total}</td>
+              </tr>
+            })
+          }
         </tbody>
       </Table>
     </div>

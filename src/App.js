@@ -31,9 +31,6 @@ function App(props) {
       <Route path="/invoices/" exact component={InvoicesRoute} />
       <Route path="/products/" component={ProductsRoute} />
       <Route path="/customers/" component={CustomersRoute} />
-      {/*<Invoices onAddInvoice={onAddNewInvoice} invoices = {props.invoices} />*/}
-      {/*<Products onAddProduct={onAddNewProduct} products = {props.products} />*/}
-      {/*<Customers onAddCustomer={onAddNewCustomer} customers = {props.customers}/>*/}
     </Router>
   );
 }

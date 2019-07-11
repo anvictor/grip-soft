@@ -30,9 +30,10 @@ const invoices = fetch(invoicesUrl)
   .then(invoicesRes => invoicesRes)
   .catch( alert );
 
-Promise.all([customers, products, invoices]).then(values => {
-  store.dispatch({type: 'ADD_CUSTOMERS', payload: values[0]});
-  console.log('Promice customers', values[0]);
+Promise.all([invoices, products, customers]).then(values => {
+  store.dispatch({type: 'ADD_INVOICES', payload: values[0]});
+  store.dispatch({type: 'ADD_PRODUCTS', payload: values[1]});
+  store.dispatch({type: 'ADD_CUSTOMERS', payload: values[2]});
 });
 
 ReactDOM.render(

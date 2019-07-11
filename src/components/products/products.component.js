@@ -4,11 +4,20 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Table from 'react-bootstrap/Table';
 
 function Products(props) {
+  function addProduct(){
+    props.onAddProduct({
+      createdAt: "new created At",
+      id: 526,
+      name: "new Product",
+      price: 129.99,
+      updatedAt: "new updated At"
+    })
+  }
   return (
     <div className='table_component'>
       <ButtonToolbar>
         <h1>Product list</h1>
-        <Button variant="outline-secondary">Create</Button>
+        <Button onClick={addProduct} variant="outline-secondary">Create</Button>
       </ButtonToolbar>
 
       <Table responsive>
@@ -20,15 +29,15 @@ function Products(props) {
         </tr>
         </thead>
         <tbody>
-          {/*{*/}
-            {/*props.products.map(function (product, index) {*/}
-              {/*return <tr key={index}>*/}
-                {/*<td>{index}</td>*/}
-                {/*<td>{product.name}</td>*/}
-                {/*<td>{product.price}</td>*/}
-              {/*</tr>*/}
-            {/*})*/}
-          {/*}*/}
+          {
+            props.products.map(function (product, index) {
+              return <tr key={index}>
+                <td>{index}</td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+              </tr>
+            })
+          }
         </tbody>
       </Table>
     </div>
