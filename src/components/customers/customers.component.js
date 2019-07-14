@@ -10,30 +10,33 @@ function Customers(props) {
   const [action, setAction] = useState('');
 
   let modalClose = () => setModalShow(false);
-  console.log('Customers', props);
 
-  function addCustomer(){
+  function showCustomer(){
     setModalShow(!modalShow);
-    setAction('Create New ');
-    // props.onAddCustomer({
-    //   id: 513,
-    //   name: "New Name",
-    //   address: "new address",
-    //   phone: "new phone",
-    //   createdAt: "new createdAt",
-    //   updatedAt: "new apdatedAt"
-    // })
+    setAction('Edit');
+
   }
+
+  function addCustomer(e){
+    console.log('Customer.component/addCustomer get this data:', e);
+    try {
+      console.log('name',e.name,'address',e.address,'phone',e.phone);
+    }catch (e) {
+      console.log('on this moment Customers:Obj is undefined');
+    }
+  }
+
   return (
     <div className='table_component'>
       <ButtonToolbar>
         <h1>Customer list</h1>
-        <Button onClick={addCustomer} variant="outline-secondary">Create</Button>
+        <Button onClick={showCustomer} variant="outline-secondary">Create</Button>
       </ButtonToolbar>
 
       <CustomerModal
       show={modalShow}
       onHide={modalClose}
+      addCustomerModal = {addCustomer}
       action = {action}
       />
 

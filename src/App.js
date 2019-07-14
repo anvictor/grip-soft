@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Customers from './components/customers/customers.component';
 import Navbar from 'react-bootstrap/Navbar'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
 import Products from "./components/products/products.component";
 import Invoices from "./components/invoices/invoices.component";
@@ -10,7 +10,6 @@ import "./App.css";
 import getCustomers from './actions/customers';
 
 function App(props) {
-  console.log('App', props);
   function InvoicesRoute() {return <Invoices onAddInvoice={onAddNewInvoice} invoices = {props.invoices} />}
   function ProductsRoute() {return <Products onAddProduct={onAddNewProduct} products = {props.products} />}
   function CustomersRoute() {return <Customers onAddCustomer={onAddNewCustomer} customers = {props.customers}/>}
