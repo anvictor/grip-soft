@@ -10,24 +10,21 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
-
-const customersUrl = 'http://localhost:8000/api/customers/';
-const productsUrl = 'http://localhost:8000/api/products/';
-const invoicesUrl = 'http://localhost:8000/api/invoices/';
+const serverPath = 'http://localhost:8000';
+const customersUrl = serverPath + '/api/customers/';
+const productsUrl = serverPath + '/api/products/';
+const invoicesUrl = serverPath + '/api/invoices/';
 
 const customers = fetch(customersUrl)
   .then(response => response.json())
-  .then(customersRes => customersRes)
   .catch( alert );
 
 const products = fetch(productsUrl)
   .then(response => response.json())
-  .then(productsRes => productsRes)
   .catch( alert );
 
 const invoices = fetch(invoicesUrl)
   .then(response => response.json())
-  .then(invoicesRes => invoicesRes)
   .catch( alert );
 
 Promise.all([invoices, products, customers]).then(values => {

@@ -4,9 +4,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import Navbar from "react-bootstrap/Navbar";
 
-export default function CustomerModal (props) {
-  // Obj to collect data from child ModalContent below
-  let customerModal ={};
+export default function CustomerEditModal (props) {
+  console.log('CustomersEdit/props', props);
+  let customerID = window.location.pathname.split('edit/')[1]; //get customer id from url
+
+  //props.getCustomerModal(customerID);// return id to parent
+
+  // Obj to show data on child ModalContent below
+  let customerModal = props.customerModal;
 
   // Metod to collect data from child ModalContent below
   function CollectData(customer) {
@@ -18,17 +23,19 @@ export default function CustomerModal (props) {
       console.log('customer.field undefined now');
     }
   }
-
-//Uploading Collected Data Obj to parent customers.component
+//Uploading Collected Data Obj to parent customer.component
   function onSubmit() {
     props.addCustomerModal(customerModal);
   }
-
+  function onDelete() {
+    console.log('onDelete');
+  }
   return (
     <Modal show = {true}
            size="lg"
            aria-labelledby="contained-modal-title-vcenter"
-           centered>
+           centered
+    >
 
       <Navbar className="NavModal" expand="lg" variant="light" bg="light">
 
@@ -36,20 +43,26 @@ export default function CustomerModal (props) {
           <Modal.Header closeButton/>
         </Navbar.Brand>
         <Modal.Title id="contained-modal-title-vcenter">
-          Create New Customer:
+          Edit Customer # {customerID}:
         </Modal.Title>
       </Navbar>
 
       <Modal.Body>
         {/*ModalContent child-Component see below*/}
         <ModalContent CollectDataModalContent={CollectData}
+                      customerModalContent={customerModal}
                       getCustomer/>
       </Modal.Body>
       <Navbar className="NavModal" expand="lg" variant="light" bg="light">
         <Navbar.Brand href="/customers/">
           <Modal.Footer>
-            <Button onClick={onSubmit} variant="primary" type="submit">Submit</Button>
-            <Button variant="secondary">Exit</Button>
+            <Button onClick={onSubmit} variant="primary" type="submit">
+              Submit
+            </Button>
+            <Button onClick={onDelete} variant="outline-secondary" type="submit">
+              Delete
+            </Button>
+            <Button variant="secondary" >Exit</Button>
           </Modal.Footer>
         </Navbar.Brand>
 
@@ -64,10 +77,11 @@ class  ModalContent extends React.Component{
     super(props);
     this.textInput = this.textInput.bind(this);
   }
-  // Obj to collect typing data
+
+// Obj to collect typing data
   customerModalContent ={
     address: "",
-    name: "",
+    name: "s5s5s5s5s5",
     phone: ""
   };
 
@@ -88,18 +102,25 @@ class  ModalContent extends React.Component{
   };
 
   render(){
+    console.log('edit modal body props', this.props);
     return <Form>
       <Form.Group controlId="formBasicName">
         <Form.Label>Name</Form.Label>
-        <Form.Control onBlur={this.textInput} type="text" placeholder="Enter Name" />
+        <Form.Control onChange={this.textInput} type="text"
+                      value={this.props.customerModalContent.name}
+                      placeholder="Enter Name" />
       </Form.Group>
       <Form.Group controlId="formBasicAddress">
         <Form.Label>Address</Form.Label>
-        <Form.Control onBlur={this.textInput} type="text" placeholder="Enter Address" />
+        <Form.Control onChange={this.textInput} type="text"
+                      value={this.props.customerModalContent.address}
+                      placeholder="Enter Address" />
       </Form.Group>
       <Form.Group controlId="formBasicPhone">
         <Form.Label>Phone</Form.Label>
-        <Form.Control onBlur={this.textInput} type="text" placeholder="Enter Phone" />
+        <Form.Control onChange={this.textInput} type="text"
+                      value={this.props.customerModalContent.phone}
+                      placeholder="Enter Phone" />
       </Form.Group>
 
     </Form>
