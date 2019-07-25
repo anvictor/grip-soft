@@ -6,8 +6,8 @@ export default function customers(state = [], action) {// reducer
       return action.payload;
 
     case types.SET_CUSTOMER: {
-      console.log('assign = ', action.payload);debugger;
-      alert('assign = ' + action.payload);
+      console.log('SET_CUSTOMER = ', action.payload);debugger;
+      alert('SET_CUSTOMER = ' + action.payload);
       return {...state, customerToEdit: action.payload}
     }
     default:
